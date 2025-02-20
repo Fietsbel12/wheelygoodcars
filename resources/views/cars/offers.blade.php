@@ -7,7 +7,6 @@
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
-                <th>ID</th>
                 <th>Kenteken</th>
                 <th>Merk</th>
                 <th>Model</th>
@@ -28,7 +27,6 @@
         <tbody>
             @foreach ($cars as $car)
                 <tr>
-                    <td>{{ $car->id }}</td>
                     <td>{{ $car->license_plate }}</td>
                     <td>{{ $car->brand }}</td>
                     <td>{{ $car->model }}</td>
