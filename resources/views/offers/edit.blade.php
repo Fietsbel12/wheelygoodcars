@@ -1,43 +1,67 @@
-@extends('layouts.app')
+@extends('layouts.crud')
     @section('content')
-        <div>
+        <div class="card p-4 shadow">
             <form action="{{route('offers.update', $car->id)}}" method="POST">
                 @csrf
-                <label>Kenteken:</label>
-                <input type="text" name="license_plate" value="{{$car->license_plate}}">
+                <div class="mb-3">
+                    <label>Kenteken:</label>
+                    <input type="text" name="license_plate" value="{{$car->license_plate}}">
+                </div>
 
-                <label>Merk:</label>
-                <input type="text" name="brand" value="{{$car->brand}}">
+                <div class="mb-3">
+                    <label>Merk:</label>
+                    <input type="text" name="brand" value="{{$car->brand}}">
+                </div>
 
-                <label>Model:</label>
-                <input type="text" name="model" value="{{$car->model}}">
+                <div class="mb-3">
+                    <label>Model:</label>
+                    <input type="text" name="model" value="{{$car->model}}">
+                </div>
 
-                <label>Prijs:</label>
-                <input type="number" name="price" value="{{$car->price}}">
+                <div class="mb-3">
+                    <label>Prijs:</label>
+                    <input type="number" name="price" value="{{$car->price}}">
+                </div>
 
-                <label>Kilometerstand:</label>
-                <input type="number" name="mileage" value="{{$car->mileage}}">
+                <div class="mb-3">
+                    <label>Kilometerstand:</label>
+                    <input type="number" name="mileage" value="{{$car->mileage}}">
+                </div>
 
-                <label>Aantal zitplaatsen:</label>
-                <input type="number" name="seats" value="{{$car->seats}}">
+                <div class="mb-3">
+                    <label>Aantal zitplaatsen:</label>
+                    <input type="number" name="seats" value="{{$car->seats}}">
+                </div>
 
-                <label>Aantal deuren:</label>
-                <input type="number" name="doors" value="{{$car->doors}}">
+                <div class="mb-3">
+                    <label>Aantal deuren:</label>
+                    <input type="number" name="doors" value="{{$car->doors}}">
+                </div>
 
-                <label>Productie jaar:</label>
-                <input type="number" name="production_year" value="{{$car->production_year}}">
+                <div class="mb-3">
+                    <label>Productie jaar:</label>
+                    <input type="number" name="production_year" value="{{$car->production_year}}">
+                </div>
 
-                <label>Gewicht:</label>
-                <input type="number" name="weight" value="{{$car->weight}}">
+                <div class="mb-3">
+                    <label>Gewicht:</label>
+                    <input type="number" name="weight" value="{{$car->weight}}">
+                </div>
 
-                <label>Kleur van de auto:</label>
-                <input type="text" name="color" value="{{$car->color}}">
+                <div class="mb-3">
+                    <label>Kleur van de auto:</label>
+                    <input type="text" name="color" value="{{$car->color}}">
+                </div>
 
-                <label>Foto:</label>
-                <input type="text" name="image" value="{{$car->image}}">
+                <div class="mb-3">
+                    <label>Foto:</label>
+                    <input type="text" name="image" value="{{$car->image}}">
+                </div>
 
-                <label>Verkocht:</label>
-                <input type="date" name="sold_at" value="{{$car->sold_at}}">
+                <div class="mb-3">
+                    <label>Verkocht:</label>
+                    <input type="date" name="sold_at" value="{{$car->sold_at}}">
+                </div>
 
                 <input type="submit" value="Versturen">
             </form>
