@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>WheelyGoodCars</title>
         @vite(['resources/css/app.scss', 'resources/js/app.js'])
+        @livewireStyles
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark d-print-none bg-black">
@@ -38,5 +39,6 @@
         <div class="container">
             @yield('content')
         </div>
+        @livewireScripts
     </body>
 </html>
