@@ -15,8 +15,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome'); // Geen lijst met auto's tonen
 })->name('home');
+
+Route::get('/car-info/{licensePlate}', function ($licensePlate) {
+    // RDW API aanroepen
+    $url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken={$licensePlate}";
+    $response = Http::get($url);
+    $data = $response->json();
+
+    // Controleren of er een voertuig is gevonden
+    if (empty($data)) {
+        return response()->json(['error' => 'Geen voertuig gevonden'], 404);
+    }
+
+    $car = $data[0]; // Eerste resultaat gebruiken
+    return response()->json([
+        'brand' => $car['merk'] ?? 'Onbekend',
+        'model' => $car['handelsbenaming'] ?? 'Onbekend',
+        'year' => isset($car['datum_eerste_toelating']) ? substr($car['datum_eerste_toelating'], 0, 4) : 'Onbekend'
+    ]);
+});
 
 Route::get('/cars/offers', [CarsController::class, 'index'])->name('cars.offers');
 Route::get('/cars/ownoffers', [CarsController::class, 'ownOffers'])->name('cars.ownoffers');

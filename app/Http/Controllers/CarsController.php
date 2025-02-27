@@ -7,8 +7,9 @@ use App\Models\Car;
 
 class CarsController extends Controller
 {
-    public function index(){
-        $cars = Car::all();
+    public function index()
+    {
+        $cars = Car::whereNull('sold_at')->orderBy('created_at', 'desc')->get();
         return view('cars.offers')->with('cars', $cars);
     }
 

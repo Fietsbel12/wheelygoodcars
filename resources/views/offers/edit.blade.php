@@ -60,7 +60,7 @@
 
                 <div class="mb-3">
                     <label>Verkocht:</label>
-                    <input type="date" name="sold_at" value="{{$car->sold_at}}">
+                    <input type="date" name="sold_at" value="{{$car->status}}">
                 </div>
 
                 <input type="submit" value="Versturen">

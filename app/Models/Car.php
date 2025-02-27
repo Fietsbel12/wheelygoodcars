@@ -18,4 +18,11 @@ class Car extends Model
     protected $attributes = [
         'views' => 0,
     ];
+
+    protected $dates = ['sold_at'];
+
+    public function getStatusAttribute()
+    {
+        return $this->sold_at? 'Verkocht' : 'Beschrikbaar';
+    }
 }

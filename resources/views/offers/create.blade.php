@@ -4,6 +4,7 @@
 @section('header', 'Nieuw aanbod')
 
 @section('content')
+
     <div class="container">
         <div class="card p-4 shadow">
             <form action="{{ route('offers.store') }}" method="POST">
@@ -34,7 +35,7 @@
                         <input type="number" name="doors" class="form-control">
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label class="form-label">Massa rijklaar:</label>
+                        <label class="form-label">Gewicht:</label>
                         <input type="number" name="weight" class="form-control">
                     </div>
                 </div>
