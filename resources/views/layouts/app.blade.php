@@ -19,7 +19,7 @@
                         <li class="nav-item"><a class="nav-link text-light" href="{{ route('cars.offers') }}">Alle auto's</a></li>
                             @auth
                                 <li class="nav-item"><a class="nav-link text-light" href="{{ route('cars.ownoffers') }}">Mijn aanbod</a></li>
-                                <li class="nav-item"><a class="nav-link text-light" href="{{ route('offers.index') }}">Aanbod plaatsen</a></li>
+                                <li class="nav-item"><a class="nav-link text-light" href="{{ route('offers.create') }}">Aanbod plaatsen</a></li>
                             @endauth
                         </li>
                     </ul>

@@ -10,19 +10,19 @@
             <form action="{{ route('offers.store') }}" method="POST">
                 @csrf
 
-                <div class="mb-3 d-flex align-items-center">
-                    <label class="form-label me-2">NL</label>
-                    <input type="text" name="license_plate" class="form-control w-50 text-center">
+                <div class="mb-3">
+                    <label class="form-label">Kenteken:</label>
+                    <input type="text" name="license_plate" class="form-control" value="{{ $licensePlate ?? old('license_plate') }}">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Merk:</label>
-                    <input type="text" name="brand" class="form-control">
+                    <input type="text" name="brand" class="form-control" value="{{ $brand ?? old('brand') }}">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Model:</label>
-                    <input type="text" name="model" class="form-control">
+                    <input type="text" name="model" class="form-control" value="{{ $model ?? old('model') }}">
                 </div>
 
                 <div class="row">
@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Jaar van productie:</label>
-                        <input type="number" name="production_year" class="form-control">
+                        <input type="number" name="production_year" class="form-control" value="{{ request('year') }}">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Kleur:</label>

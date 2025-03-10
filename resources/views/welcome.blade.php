@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.crud')
 
 @section('content')
 <div class="container">
@@ -20,7 +20,7 @@
             <input type="hidden" name="year" id="input_year">
             <input type="hidden" name="license_plate" id="input_license_plate">
 
-            <button type="submit" class="btn btn-success mt-2">Verder naar invoer</button>
+            <button type="submit" class="btn btn-primary">Verdere invoer</button>
         </form>
     </div>
 </div>

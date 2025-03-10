@@ -15,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome'); // Geen lijst met auto's tonen
+    return view('welcome');
 })->name('home');
 
+// API
 Route::get('/car-info/{licensePlate}', function ($licensePlate) {
     // RDW API aanroepen
     $url = "https://opendata.rdw.nl/resource/m9d7-ebf2.json?kenteken={$licensePlate}";
@@ -51,5 +52,7 @@ Route::post('/offers/create', [CarsController::class, 'store'])->name('offers.st
 Route::get('/offers/edit/{car}',[CarsController::class, 'edit'])->name('offers.edit');
 Route::post('/offers/edit/{car}', [CarsController::class, 'update'])->name('offers.update');
 Route::delete('/offers/delete/{car}', [CarsController::class, 'destroy'])->name('offers.destroy');
+
+Route::get('/offers/{car}', [CarsController::class, 'show'])->name('offers.show');
 
 require __DIR__.'/auth.php';

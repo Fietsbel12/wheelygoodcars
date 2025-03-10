@@ -18,8 +18,20 @@ class CarsController extends Controller
         return view('cars.ownoffers', compact('cars'));
     }
 
-    public function create(){
-        return view('offers.create');
+    public function create(Request $request)
+    {
+        // Haal de gegevens uit de request
+        $brand = $request->input('brand');
+        $model = $request->input('model');
+        $licensePlate = $request->input('license_plate');
+
+        // Valideer of de gegevens aanwezig zijn (optioneel)
+        if (!$brand || !$model || !$licensePlate) {
+            return redirect()->back()->withErrors('Er ontbreken gegevens.');
+        }
+
+        // Geef de gegevens mee aan de view
+        return view('offers.create', compact('brand', 'model', 'licensePlate'));
     }
 
     public function store(Request $request){
@@ -66,4 +78,11 @@ class CarsController extends Controller
         $car->delete();
         return redirect()->route('cars.offers');
     }
+
+    public function show(Car $car)
+    {
+        return view('offers.show', compact('car'));
+    }
+
+
 }
