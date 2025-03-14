@@ -20,17 +20,12 @@ class CarsController extends Controller
 
     public function create(Request $request)
     {
-        // Haal de gegevens uit de request
-        $brand = $request->input('brand');
-        $model = $request->input('model');
-        $licensePlate = $request->input('license_plate');
+        // Default waarden als ze niet zijn meegegeven
+        $brand = $request->input('brand', '');
+        $model = $request->input('model', '');
+        $licensePlate = $request->input('license_plate', '');
 
-        // Valideer of de gegevens aanwezig zijn (optioneel)
-        if (!$brand || !$model || !$licensePlate) {
-            return redirect()->back()->withErrors('Er ontbreken gegevens.');
-        }
-
-        // Geef de gegevens mee aan de view
+        // Toon de view zonder redirect als er geen gegevens zijn
         return view('offers.create', compact('brand', 'model', 'licensePlate'));
     }
 

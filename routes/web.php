@@ -40,11 +40,6 @@ Route::get('/car-info/{licensePlate}', function ($licensePlate) {
 
 Route::get('/cars/offers', [CarsController::class, 'index'])->name('cars.offers');
 Route::get('/cars/ownoffers', [CarsController::class, 'ownOffers'])->name('cars.ownoffers');
-Route::get('/offers', [CarsController::class, 'create'])->name('offers.index');
-
-Route::middleware('auth')->group(function () {
-    //
-});
 
 /* crud voor het aanbieden van auto's */
 Route::get('/offers/create', [CarsController::class, 'create'])->name('offers.create');
@@ -52,6 +47,10 @@ Route::post('/offers/create', [CarsController::class, 'store'])->name('offers.st
 Route::get('/offers/edit/{car}',[CarsController::class, 'edit'])->name('offers.edit');
 Route::post('/offers/edit/{car}', [CarsController::class, 'update'])->name('offers.update');
 Route::delete('/offers/delete/{car}', [CarsController::class, 'destroy'])->name('offers.destroy');
+
+Route::middleware('auth')->group(function () {
+    //
+});
 
 Route::get('/offers/{car}', [CarsController::class, 'show'])->name('offers.show');
 
