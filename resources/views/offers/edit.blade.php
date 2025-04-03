@@ -63,7 +63,7 @@
                     <input type="date" name="sold_at" value="{{$car->status}}">
                 </div>
 
-                <input type="submit" value="Versturen">
+                <input type="submit" class="btn btn-primary btn-sm mt-3" value="Versturen">
             </form>
         </div>
 @endsection

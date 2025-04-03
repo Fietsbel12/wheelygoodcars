@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CarPdfController;
 use App\Http\Controllers\CarsController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +42,11 @@ Route::get('/car-info/{licensePlate}', function ($licensePlate) {
 
 Route::get('/cars/offers', [CarsController::class, 'index'])->name('cars.offers');
 Route::get('/cars/ownoffers', [CarsController::class, 'ownOffers'])->name('cars.ownoffers');
+Route::get('/tags/index', [TagController::class, 'index'])->name('tags.index');
+
+
+/* Maakt PDF */
+Route::get('/car/{carId}/pdf', [CarPdfController::class, 'generateCarPdf'])->name('car.generatePdf');
 
 /* crud voor het aanbieden van auto's */
 Route::get('/offers/create', [CarsController::class, 'create'])->name('offers.create');

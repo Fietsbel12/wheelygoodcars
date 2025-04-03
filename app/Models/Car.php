@@ -25,4 +25,9 @@ class Car extends Model
     {
         return $this->sold_at? 'Verkocht' : 'Beschrikbaar';
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }

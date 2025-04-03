@@ -25,7 +25,6 @@ class CarsController extends Controller
         $model = $request->input('model', '');
         $licensePlate = $request->input('license_plate', '');
 
-        // Toon de view zonder redirect als er geen gegevens zijn
         return view('offers.create', compact('brand', 'model', 'licensePlate'));
     }
 
@@ -74,8 +73,11 @@ class CarsController extends Controller
         return redirect()->route('cars.offers');
     }
 
-    public function show(Car $car)
+    public function show($id)
     {
+        $car = Car::findOrFail($id);
+        $car->increment('views');
+
         return view('offers.show', compact('car'));
     }
 
