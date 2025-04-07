@@ -29,6 +29,12 @@ class CarsController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'brand' => 'required|string|max:255',
+            'model' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Max 2MB
+        ]);
+
         $newCar = new Car();
         $newCar->user_id = auth()->id();
         $newCar->license_plate = $request->license_plate;
@@ -41,11 +47,19 @@ class CarsController extends Controller
         $newCar->production_year = $request->production_year;
         $newCar->weight = $request->weight;
         $newCar->color = $request->color;
-        $newCar->image = $request->image;
+
+        if ($request->hasFile('image')) {
+            $fileName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/cars', $fileName);
+            $newCar->image = 'cars/' . $fileName;
+        }
+
         $newCar->sold_at = $request->sold_at;
         $newCar->save();
+
         return redirect()->route('cars.offers');
     }
+
 
     public function edit(Car $car){
         return view('offers.edit', ['car' => $car]);
@@ -62,7 +76,11 @@ class CarsController extends Controller
         $car->production_year = $request->production_year;
         $car->weight = $request->weight;
         $car->color = $request->color;
-        $car->image = $request->image;
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('cars', 'public');
+            $car->image = $path;
+        }
         $car->sold_at = $request->sold_at;
         $car->save();
         return redirect()->route('cars.offers');

@@ -1,8 +1,9 @@
 @extends('layouts.crud')
     @section('content')
         <div class="card p-4 shadow">
-            <form action="{{route('offers.update', $car->id)}}" method="POST">
+            <form action="{{route('offers.update', $car->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="mb-3">
                     <label>Kenteken:</label>
                     <input type="text" name="license_plate" value="{{$car->license_plate}}">
@@ -55,15 +56,16 @@
 
                 <div class="mb-3">
                     <label>Foto:</label>
-                    <input type="text" name="image" value="{{$car->image}}">
+                    <input type="file" name="image" accept="image/*"value="{{$car->image}}">
                 </div>
+
 
                 <div class="mb-3">
                     <label>Verkocht:</label>
                     <input type="date" name="sold_at" value="{{$car->status}}">
                 </div>
 
-                <input type="submit" class="btn btn-primary btn-sm mt-3" value="Versturen">
+                <input type="submit" class="btn btn-warning btn-sm" value="Aanpassen">
             </form>
         </div>
 @endsection

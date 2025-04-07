@@ -7,9 +7,8 @@
 
     <div class="container">
         <div class="card p-4 shadow">
-            <form action="{{ route('offers.store') }}" method="POST">
+            <form action="{{ route('offers.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-
                 <div class="mb-3">
                     <label class="form-label">Kenteken:</label>
                     <input type="text" name="license_plate" class="form-control" value="{{ $licensePlate ?? old('license_plate') }}">
@@ -64,6 +63,13 @@
                     <div class="input-group">
                         <span class="input-group-text">€</span>
                         <input type="number" name="price" class="form-control">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="from-label" for="image">Foto:</label>
+                    <div class="input-group">
+                        <input type="file" name="image" accept="image/*">
                     </div>
                 </div>
 

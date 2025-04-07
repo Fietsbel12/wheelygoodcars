@@ -45,7 +45,11 @@
             <form action="{{ url('/car/' . $car->id . '/pdf') }}" method="GET">
                 <button type="submit" class="btn btn-primary">Genereer PDF</button>
             </form>
-            <img src="{{ $car->image }}" class="card-img-top" alt="Auto afbeelding">
+
+            @if($car->image)
+                <img src="{{ asset('storage/' . $car->image) }}" alt="Afbeelding van {{ $car->brand }} {{ $car->model }}" class="img-fluid">
+            @endif
+
         </div>
     </div>
 @endsection

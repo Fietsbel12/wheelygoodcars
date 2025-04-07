@@ -9,7 +9,10 @@
         @foreach ($cars as $car)
             <div class="col-md-4 mb-4">
                 <div class="card shadow h-100 d-flex flex-column">
-                    <img src="{{ $car->image }}" class="card-img-top" alt="Auto afbeelding">
+                    @if($car->image)
+                        <img src="{{ asset('storage/' . $car->image) }}" class="card-img-top" alt="Afbeelding van {{ $car->brand }} {{ $car->model }}">
+                    @endif
+
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ $car->brand }} - {{ $car->model }}</h5>
                         <p class="card-text"><strong>Prijs:</strong> €{{ number_format($car->price, 2, ',', '.') }}</p>
@@ -27,6 +30,7 @@
                                 </form>
                             </div>
                         @endauth
+
                         <a href="{{ route('offers.show', $car->id) }}" class="btn btn-primary btn-sm mt-3">Bekijk Details</a>
                     </div>
                 </div>
@@ -35,6 +39,7 @@
     </div>
 </div>
 @endsection
+
 
 @section('styles')
     <style>

@@ -52,7 +52,7 @@ Route::get('/car/{carId}/pdf', [CarPdfController::class, 'generateCarPdf'])->nam
 Route::get('/offers/create', [CarsController::class, 'create'])->name('offers.create');
 Route::post('/offers/create', [CarsController::class, 'store'])->name('offers.store');
 Route::get('/offers/edit/{car}',[CarsController::class, 'edit'])->name('offers.edit');
-Route::post('/offers/edit/{car}', [CarsController::class, 'update'])->name('offers.update');
+Route::put('/offers/edit/{car}', [CarsController::class, 'update'])->name('offers.update');
 Route::delete('/offers/delete/{car}', [CarsController::class, 'destroy'])->name('offers.destroy');
 
 Route::middleware('auth')->group(function () {
