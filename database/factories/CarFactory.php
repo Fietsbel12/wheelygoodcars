@@ -32,7 +32,14 @@ class CarFactory extends Factory
             'production_year' => fake()->numberBetween(1990, 2024),
             'weight' => fake()->numberBetween(800, 3000),
             'color' => fake()->safeColorName(),
-            'image' => fake()->imageUrl(640, 480, 'cars', true)
+            'image' => 'sample_cars/' . fake()->randomElement([
+                'car1.jpg',
+                'car2.jpg',
+                'car3.jpg',
+                'car4.png',
+                'car5.png',
+            ]),
+
         ];
     }
 

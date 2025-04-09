@@ -9,7 +9,7 @@ class CarsController extends Controller
 {
     public function index()
     {
-        $cars = Car::whereNull('sold_at')->orderBy('created_at', 'desc')->get();
+        $cars = Car::whereNull('sold_at')->orderBy('created_at', 'desc')->Paginate(10);
         return view('cars.offers')->with('cars', $cars);
     }
 

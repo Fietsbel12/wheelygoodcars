@@ -7,7 +7,12 @@
 
     <div class="container">
         <div class="card p-4 shadow">
-            <form action="{{ route('offers.store') }}" method="POST" enctype="multipart/form-data">
+            <!-- Progress Bar -->
+            <div class="progress mb-4">
+                <div class="progress-bar" role="progressbar" style="width: 0%;" id="progress-bar"></div>
+            </div>
+
+            <form action="{{ route('offers.store') }}" method="POST" enctype="multipart/form-data" id="offer-form">
                 @csrf
                 <div class="mb-3">
                     <label class="form-label">Kenteken:</label>
@@ -77,4 +82,38 @@
             </form>
         </div>
     </div>
+
+    <script>
+        // Functie om de voortgangsbalk bij te werken
+        const form = document.getElementById('offer-form');
+        const progressBar = document.getElementById('progress-bar');
+        const inputs = form.querySelectorAll('input');
+
+        // Initialiseer de voortgangsbalk (zekerstellen dat de balk op 0% is bij laden)
+        progressBar.style.width = '0%';
+
+        // Update de voortgangsbalk
+        function updateProgressBar() {
+            let totalFields = inputs.length;
+            let filledFields = 0;
+
+            // Tel de ingevulde velden
+            inputs.forEach(input => {
+                if (input.type === 'file' && input.files.length > 0) {
+                    filledFields += 1;  // File is ingevuld
+                } else if (input.type !== 'file' && input.value !== '') {
+                    filledFields += 1;  // Normaal veld is ingevuld
+                }
+            });
+
+            // Bereken en update de voortgangsbalk
+            let progress = (filledFields / totalFields) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Voeg event listeners toe aan de inputvelden
+        inputs.forEach(input => {
+            input.addEventListener('input', updateProgressBar);
+        });
+    </script>
 @endsection

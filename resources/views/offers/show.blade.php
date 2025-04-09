@@ -24,7 +24,7 @@
                 var toastEl = document.getElementById('viewToast');
                 var toast = new bootstrap.Toast(toastEl);
                 toast.show();
-            }, 10000);
+            }, 1000);
         });
     </script>
     @endsection
@@ -47,7 +47,7 @@
             </form>
 
             @if($car->image)
-                <img src="{{ asset('storage/' . $car->image) }}" alt="Afbeelding van {{ $car->brand }} {{ $car->model }}" class="img-fluid">
+                <img src="{{ asset('storage/' . $car->image) }}" alt="Afbeelding van {{ $car->brand }} {{ $car->model }}" class="img-fluid mt-4">
             @endif
 
         </div>

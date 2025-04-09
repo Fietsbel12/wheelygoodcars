@@ -6,7 +6,33 @@
     <title>@yield('title', 'WheelyGoodCars')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
+    @yield('styles')
+
+    <style>
+        nav[role="navigation"] > div:first-child {
+            margin-right: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        nav[role="navigation"] .relative.inline-flex {
+            background-color: #073B3A;
+            color: white;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.875rem;
+            margin-left: 10px;
+            margin-right: 5px;
+            transition: background 0.3s ease;
+        }
+
+        nav[role="navigation"] .relative.inline-flex:hover {
+            background-color: #045050;
+        }
+    </style>
+
     @livewireStyles
+
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark d-print-none bg-black">
@@ -21,6 +47,12 @@
                     @auth
                         <li class="nav-item"><a class="nav-link text-light" href="{{ route('cars.ownoffers') }}">Mijn aanbod</a></li>
                         <li class="nav-item"><a class="nav-link text-light" href="{{ route('offers.create') }}">Aanbod plaatsen</a></li>
+                    @endauth
+                    @auth
+                        @if(auth()->user()->email == 'a@a.com')
+                            <li class="nav-item"><a class="nav-link text-light" href="{{ route('admin.sus-sellers')}}">Verdachte verkopers</a></li>
+                            <li class="nav-item"><a class="nav-link text-light" href="{{ route('admin.car-views')}}">Auto views</a></li>
+                        @endif
                     @endauth
                 </ul>
                 <ul class="navbar-nav">

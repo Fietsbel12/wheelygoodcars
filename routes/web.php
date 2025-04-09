@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\SusSellerController;
 use App\Http\Controllers\CarPdfController;
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\TagController;
@@ -43,6 +45,12 @@ Route::get('/car-info/{licensePlate}', function ($licensePlate) {
 Route::get('/cars/offers', [CarsController::class, 'index'])->name('cars.offers');
 Route::get('/cars/ownoffers', [CarsController::class, 'ownOffers'])->name('cars.ownoffers');
 Route::get('/tags/index', [TagController::class, 'index'])->name('tags.index');
+
+Route::get('/admin/sus-sellers', [SusSellerController::class, 'index'])
+    ->middleware('auth')
+    ->name('admin.sus-sellers');
+
+Route::get('/admin/car-views', [AdminController::class, 'carViews'])->name('admin.car-views');
 
 
 /* Maakt PDF */

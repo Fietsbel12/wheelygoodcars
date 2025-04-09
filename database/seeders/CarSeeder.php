@@ -16,7 +16,7 @@ class CarSeeder extends Seeder
     public function run()
     {
         // Maak 200 auto's aan en koppel willekeurige tags
-        Car::factory()->count(200)->create()->each(function ($car) {
+        Car::factory()->count(250)->create()->each(function ($car) {
             $tags = Tag::inRandomOrder()->limit(rand(1, 5))->pluck('id'); // Kies 1-5 willekeurige tags
             $car->tags()->attach($tags);
         });
