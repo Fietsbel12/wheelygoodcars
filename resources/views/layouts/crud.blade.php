@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
     @yield('styles')
+    @livewireStyles
 
     <style>
         nav[role="navigation"] > div:first-child {
@@ -30,9 +31,6 @@
             background-color: #045050;
         }
     </style>
-
-    @livewireStyles
-
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark d-print-none bg-black">
@@ -73,9 +71,7 @@
         @yield('content')
     </div>
     @livewireScripts
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
     @yield('scripts')
 </body>
 </html>

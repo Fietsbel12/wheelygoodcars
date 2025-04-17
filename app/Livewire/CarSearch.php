@@ -11,29 +11,34 @@ class CarSearch extends Component {
 
     public $search = '';
 
-    public function updatedSearch()
-    {
-        $this->resetPage();  // Zorg ervoor dat de paginering wordt gereset als de zoekterm verandert
-    }
+    public function render(){
+        $results = [];
 
-    public function render()
-    {
-        $query = Car::query();
-
-        // Filter auto's op merk of model als er een zoekterm is
-        if ($this->search) {
-            $query->where(function ($q) {
-                $q->where('brand', 'like', '%' . $this->search . '%')
-                ->orWhere('model', 'like', '%' . $this->search . '%');
-            });
+        if (strlen($this->search) >= 1) {
+            $results = Car::where('brand', 'like', '%' . $this->search . '%')
+                ->orWhere('model', 'like', '%' . $this->search . '%')
+                ->whereNull('sold_at')
+                ->orderBy('created_at', 'desc')
+                ->paginate(9);
+        } else {
+            $results = Car::whereNull('sold_at')
+                ->orderBy('created_at', 'desc')
+                ->paginate(9);
         }
 
-        // Haal de gefilterde auto's op met paginering
-        $cars = $query->orderBy('created_at', 'desc')->paginate(9);
-
-        // Retourneer de auto's naar de view
         return view('livewire.car-search', [
-            'cars' => $cars,
+            'cars' => $results
         ]);
     }
+
+
+    protected $updatesQueryString = ['search'];
+    protected $paginationTheme = 'bootstrap';
+
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
+
+
 }

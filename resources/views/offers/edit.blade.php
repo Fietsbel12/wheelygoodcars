@@ -10,6 +10,7 @@
                 </div>
 
                 <div class="mb-3">
+
                     <label>Merk:</label>
                     <input type="text" name="brand" value="{{$car->brand}}">
                 </div>

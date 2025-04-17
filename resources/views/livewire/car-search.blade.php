@@ -1,10 +1,10 @@
 <div>
-    <div class="mb-4">
-        <input type="text" class="form-control" placeholder="Zoek op merk of model..." wire:model.debounce.500ms="search">
+    <div id="search" class="mb-4">
+        <input wire:model="search" type="search" class="form-control" placeholder="Zoek op merk of model...">
     </div>
 
-    <div class="row g-4">
-        @foreach ($cars as $car)
+    <div class="row g-4" id="car-results">
+        @forelse ($cars as $car)
             <div class="col-md-4 mb-4">
                 <div class="card shadow h-100 d-flex flex-column">
                     @if($car->image)
@@ -22,7 +22,9 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <p class="text-muted">Geen auto's gevonden...</p>
+        @endforelse
     </div>
 
     <div class="d-flex justify-content-center mt-4">
